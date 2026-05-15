@@ -1,6 +1,6 @@
 use napi_derive::napi;
 
-#[napi]
+#[napi(object)]
 pub struct Stats {
     pub m_lufs: f64,
     pub s_lufs: f64,
