@@ -2,6 +2,8 @@
 	"name": "node-ebur128",
 	"version": "0.1.0",
 	"description": "Node.js native addon wrapping the Rust ebur128 crate",
+	"main": "dist/index.node",
+	"types": "dist/index.d.ts",
 	"scripts": {
 		"build": "napi build -r --manifest-path Cargo.toml -o dist"
 	},
