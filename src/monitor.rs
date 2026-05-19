@@ -40,10 +40,19 @@ impl Monitor {
     }
 
     #[napi]
-    pub fn add_samples(&self, samples: &[f64]) -> napi::Result<()> {
+    pub fn add_samples_i16(&self, samples: &[i16]) -> napi::Result<()> {
         let mut monitor = self.inner.lock().unwrap();
         monitor
-            .add_frames_f64(samples)
+            .add_frames_i16(samples)
+            .map_err(|e| napi::Error::from_reason(format!("Failed to add samples: {e}")))?;
+        Ok(())
+    }
+
+    #[napi]
+    pub fn add_samples_i32(&self, samples: &[i32]) -> napi::Result<()> {
+        let mut monitor = self.inner.lock().unwrap();
+        monitor
+            .add_frames_i32(samples)
             .map_err(|e| napi::Error::from_reason(format!("Failed to add samples: {e}")))?;
         Ok(())
     }
